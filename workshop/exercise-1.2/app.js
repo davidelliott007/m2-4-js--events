@@ -21,3 +21,54 @@
 // Stretch goal
 // Make the countdown live (show a countdown that updates several times a
 // second)
+
+
+
+let userHasClicked = false;
+
+let randomTimeToClickIn =     Math.random() * (5 - 3) + 3;
+randomTimeToClickIn = Math.floor(randomTimeToClickIn)
+console.log(randomTimeToClickIn)
+
+let remaingSeconds = randomTimeToClickIn;
+
+
+let warningStatement = document.querySelector('.time-text');
+let timeSpan = document.querySelector('#time');
+const resultP = document.querySelector('.result');
+
+
+let body = document.querySelector('body');
+
+timeSpan.innerText = remaingSeconds;
+
+let noticeInterval = setInterval( 
+    function (){
+        timeSpan.innerText = remaingSeconds.toFixed(1);
+
+        if (remaingSeconds <= 0) 
+        {
+            if (userHasClicked === false) {
+                resultP.innerText = 'Countdown done- you are dead!';
+            }
+            body.removeChild(warningStatement);
+            clearInterval(noticeInterval);
+        }
+        
+        remaingSeconds = remaingSeconds - 0.1;
+
+    }
+,100);
+
+function CelebrateClicked()
+{
+    userHasClicked = true;
+    resultP.innerText = 'You clicked in time!';
+    body.removeChild(warningStatement);
+    clearInterval(noticeInterval);
+}
+
+body.addEventListener('click', 
+CelebrateClicked);
+
+

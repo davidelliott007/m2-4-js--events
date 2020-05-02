@@ -9,3 +9,18 @@
 // OPTIONAL
 // Feel free to add some CSS to this once you're done
 // --------------------------------------------------
+
+
+let body = document.querySelector('body');
+body.innerText ="click here";
+body.addEventListener('click', function (event) {
+    console.log(event);
+
+    const userClickText = document.createElement('p');
+    userClickText.innerText = 'you have clicked!';
+    userClickText.style.textAlign = 'center';
+    document.body.appendChild(userClickText);
+
+  });
+  
+
