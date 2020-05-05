@@ -43,11 +43,14 @@ function generateNonIntersectingBoxes(screenWidth, screenHeight, boxWidth, boxHe
     //seed with first box
     boxes.push({left: Math.random() * screenWidth, width: boxWidth, height:boxHeight, top: Math.random() * screenHeight})
 
-    // make a random box, while that box intersects with any other boxes in the array, remake the object params in that box until it does not intersect with any boxes in the array
+    // make a random box, if that box intersects with any other boxes 
+    //in the array, remake the object params in that box until it does not 
+    //intersect with any boxes in the array
 
     for (i=0; i<boxesNum; i++)
     {
          let random_x = (Math.random() * screenWidth) - boxWidth;
+         // don't want the boces to generate off-screen
          if (random_x < 0) { random_x = 0;}
          let random_y = (Math.random() * screenHeight) - boxHeight;
          if (random_y < 0) { random_y = 0;}
@@ -57,8 +60,10 @@ function generateNonIntersectingBoxes(screenWidth, screenHeight, boxWidth, boxHe
         // console.log(new_box);
 
         let newBoxOverlapsWithBoxesInArray = true;
+        
         while ( newBoxOverlapsWithBoxesInArray === true ) {
 
+                // find out if any boxes in the existing array overlap with the random newBox we just made
                 let boxesThatOverlap = boxes.filter(box => (isOverlapping(box, newBox)));
 
                 if (boxesThatOverlap.length === 0)
